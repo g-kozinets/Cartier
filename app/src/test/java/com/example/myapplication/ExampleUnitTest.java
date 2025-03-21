@@ -67,7 +67,7 @@ public class ExampleUnitTest {
     public By burgerLoc = AppiumBy.xpath("//android.widget.ImageView[@content-desc='Open navigation menu']");
     public By profileBtnLoc = AppiumBy.xpath("//android.widget.TextView[@text='My Profile']");
     public By giftsTabLoc = AppiumBy.xpath("//android.widget.TextView[contains(@text, 'Gifts')]");
-    public By giftBtnLog = AppiumBy.xpath(String.format(formatGiftTileLoc, giftIndex));
+    public By giftBtnLog = AppiumBy.xpath("//androidx.recyclerview.widget.RecyclerView[./android.widget.TextView[contains(@text, 'These gifts')]]/android.widget.FrameLayout");
 
     public By nonUniqUpgradeBtn = AppiumBy.xpath("//android.widget.TextView[@text='Non-Unique btn']");
     public By nonUniqUpgradeBtn2 = AppiumBy.xpath("//android.widget.TextView[@text='⭐ 500 ']");
