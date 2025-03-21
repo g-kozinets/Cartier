@@ -72,6 +72,7 @@ public class ExampleUnitTest {
     public By nonUniqUpgradeBtn = AppiumBy.xpath("//android.widget.TextView[@text='Non-Unique btn']");
     public By nonUniqUpgradeBtn2 = AppiumBy.xpath("//android.widget.TextView[@text='⭐ 500 ']");
     public By giftOkBtn = AppiumBy.xpath("//android.widget.Button[@content-desc='OK']");
+    public By availabilityLbl = AppiumBy.xpath("//android.widget.TextView[contains (@text, ' left')]");
 
     public By upgradeForBtn = AppiumBy.xpath("//android.widget.Button[contains(@content-desc, 'Upgrade for')]");
     public By senderNameLbl = AppiumBy.xpath("//android.widget.TextView[@text='Add sender's name to the gift']");
@@ -93,16 +94,17 @@ public class ExampleUnitTest {
         int count = 0;
         By locToUse = nonUniqUpgradeBtn;
         while(!isUpgradeForOpened) {
+            System.out.println(findElement(availabilityLbl).getText());
             count++;
-            findElement(locToUse).click();
+            if (!driver.findElements(locToUse).isEmpty()) {
+                findElement(locToUse).click();
+            }
             Thread.sleep(1000L);
             isUpgradeForOpened = !driver.findElements(upgradeForBtn).isEmpty();
 
             if (!isUpgradeForOpened) {
                 closeGiftAndReopen();
             }
-
-            //if (count == 5) locToUse = nonUniqUpgradeBtn;
         }
 
         findElement(upgradeForBtn).click();
