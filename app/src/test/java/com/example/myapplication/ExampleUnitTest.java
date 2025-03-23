@@ -71,7 +71,7 @@ public class ExampleUnitTest {
 
     public Wait<AndroidDriver> getWait() {
         return new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(2))
+                .withTimeout(Duration.ofSeconds(5))
                 .pollingEvery(Duration.ofMillis(200))
                 .ignoring(NoSuchElementException.class);
     }
@@ -86,6 +86,7 @@ public class ExampleUnitTest {
                 driver = getDriver();
             } catch (SessionNotCreatedException e) {
                 System.out.println("Session not created, trying again");
+                System.out.println(e.getMessage());
                 Thread.sleep(1000L);
             }
         }
