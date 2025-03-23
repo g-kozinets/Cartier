@@ -31,7 +31,7 @@ import org.openqa.selenium.support.ui.Wait;
 public class ExampleUnitTest {
     @Parameterized.Parameters
     public static Object[][] data() {
-        return new Object[10][0];
+        return new Object[30][0];
     }
 
     Process emulatorProcess;
@@ -43,10 +43,11 @@ public class ExampleUnitTest {
     public AndroidDriver getDriver() throws MalformedURLException {
         var options = new BaseOptions()
                 .amend("noReset", "true")
+                .amend("disableWindowAnimation", "true")
                 .amend("adbExecTimeout", "60000")
                 .amend("forceAppLaunch", "true")
                 .amend("platformName", "android")
-                //.amend("appium:appActivity", "org.telegram.messenger.DefaultIcon")
+                .amend("appium:appActivity", "org.telegram.messenger.DefaultIcon")
                 .amend("appium:appPackage", "org.telegram.messenger")
                 .amend("appium:deviceName", "android")
                 .amend("appium:automationName", "uiautomator2")
@@ -71,7 +72,7 @@ public class ExampleUnitTest {
 
     public Wait<AndroidDriver> getWait() {
         return new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(5))
+                .withTimeout(Duration.ofSeconds(2))
                 .pollingEvery(Duration.ofMillis(200))
                 .ignoring(NoSuchElementException.class);
     }
@@ -98,6 +99,7 @@ public class ExampleUnitTest {
     public By profileBtnLoc = AppiumBy.xpath("//android.widget.TextView[@text='My Profile']");
     public By giftsTabLoc = AppiumBy.xpath("//android.widget.TextView[contains(@text, 'Gifts')]");
     public By giftBtnLog = AppiumBy.xpath(String.format(formatGiftTileLoc, giftIndex));
+    public By pustoTabLoc = AppiumBy.xpath("//android.view.View[@content-desc='Pusto']");
 
     public By nonUniqUpgradeBtn = AppiumBy.xpath("//android.widget.TextView[@text='Non-Unique btn']");
     public By giftOkBtn = AppiumBy.xpath("//android.widget.Button[@content-desc='OK']");
@@ -113,6 +115,7 @@ public class ExampleUnitTest {
     public void sampleTest() throws InterruptedException {
         System.out.println(driver.getBatteryInfo().getState());
 
+        findElement(pustoTabLoc).click();
         openGiftFromStart();
 
         boolean isUpgradeForOpened = false;
