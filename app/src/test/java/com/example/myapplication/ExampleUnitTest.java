@@ -50,7 +50,7 @@ public class ExampleUnitTest {
                 .amend("appium:appPackage", "org.telegram.messenger")
                 .amend("appium:deviceName", "android")
                 .amend("appium:automationName", "uiautomator2")
-                .amend("appium:udid", "988a1b44364256345130")
+                .amend("appium:udid", "69jf7drkwgfage45")
                 .amend("appium:ensureWebviewsHavePages", true)
                 .amend("appium:nativeWebScreenshot", true)
                 .amend("appium:newCommandTimeout", 3600)
